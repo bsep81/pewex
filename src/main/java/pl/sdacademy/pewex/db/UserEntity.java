@@ -1,9 +1,7 @@
 package pl.sdacademy.pewex.db;
-import liquibase.pro.packaged.C;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.apachecommons.CommonsLog;
 import javax.persistence.*;
 import java.time.LocalDate;
 @NoArgsConstructor
