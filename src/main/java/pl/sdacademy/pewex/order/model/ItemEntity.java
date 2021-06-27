@@ -5,25 +5,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
 @Data
-@Table(name = "items")
+@Table(name = "item")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item {
+public class ItemEntity {
 
     @Id
-    private int id;
+    private Long id;
 
     @Column(name="id_order")
-    private int idOrder;
+    private Long idOrder;
 
     @Column(name="id_product")
-    private int idProduct;
+    private Long idProduct;
 
     private int count;
 
