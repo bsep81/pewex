@@ -5,16 +5,16 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-<!--    <changeSet id="init-db" author="Anna Książek">-->
-<!--        <createTable tableName="play_list">-->
-<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
-<!--                <constraints primaryKey="true" />-->
-<!--            </column>-->
-<!--            <column name="name" type="VARCHAR(150)">-->
-<!--                <constraints nullable="false" unique="true"/>-->
-<!--            </column>-->
-<!--        </createTable>-->
-<!--    </changeSet>-->
+    <changeSet id="init-db" author="Anna Książek">
+        <createTable tableName="play_list">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="name" type="Password">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
 
 <!--    <changeSet id="insert demo pl" author="Anna Książek">-->
 <!--        <insert tableName="play_list">-->
