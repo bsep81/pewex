@@ -1,19 +1,19 @@
 
-package pl.sdacademy.pewex.db;
+package pl.sdacademy.pewex.product.db;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
+@Table(name = "category")
 public class CategoryEntity {
 
     @Id
@@ -21,8 +21,5 @@ public class CategoryEntity {
     private Long id;
     private Long parentId;
     private String name;
-    private String createdBy;
-    private LocalDateTime createdDate;
-    private String modifiedBy;
-    private LocalDateTime modifiedDate;
+
 }
