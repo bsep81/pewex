@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -13,19 +15,20 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(length = 150,unique = true)
+
     private String userName;
-    @Column
+
     private String password;
-    @Column
+
     private String role;
-    @Column
+
     private String createdBy;
-    @Column
-    private LocalDate createdDate;
-    @Column
+
+    private LocalDateTime createdDate;
+
     private String modifiedBy;
-    @Column LocalDate modifiedDate;
+
+    private LocalDateTime modifiedDate;
 }
 
 
