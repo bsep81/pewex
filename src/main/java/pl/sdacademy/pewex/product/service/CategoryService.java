@@ -16,13 +16,12 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category addCategory(String name, Long parentId){
-        CategoryEntity entity = CategoryEntity.builder()
-                .name(name)
-                .parentId(parentId)
-                .build();
+    public Category addCategory(Category category) {
+        CategoryEntity entity = categoryMapper.mapCategoryToEntity(category);
 
         CategoryEntity created = categoryRepository.save(entity);
-        return categoryMapper.mapEntityToCategory(created).get();
+
+        return categoryMapper.mapEntityToCategory(created)
+                .orElseGet(Category::new);
     }
 }

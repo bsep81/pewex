@@ -9,23 +9,26 @@ import java.util.Optional;
 @Component
 public class CategoryMapper {
 
-    public Optional<Category> mapEntityToCategory(CategoryEntity entity){
+    public Optional<Category> mapEntityToCategory(CategoryEntity entity) {
 
-        Category category = null;
-        if (entity != null) {
-            category = Category.builder()
-                    .id(entity.getId())
-                    .name(entity.getName())
-                    .parentId(entity.getParentId())
-                    .build();
+        if (entity == null) {
+            return Optional.empty();
         }
+
+        Category category = Category.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .parentId(entity.getParentId())
+                .build();
+
         return Optional.of(category);
     }
 
-    public CategoryEntity mapCategoryToEntity(Category category){
+    public CategoryEntity mapCategoryToEntity(Category category) {
 
         return CategoryEntity.builder()
                 .name(category.getName())
+                .parentId(category.getParentId())
                 .build();
     }
 }

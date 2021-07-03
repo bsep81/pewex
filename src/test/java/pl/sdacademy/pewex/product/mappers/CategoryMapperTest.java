@@ -4,10 +4,14 @@ import org.junit.jupiter.api.Test;
 import pl.sdacademy.pewex.product.db.CategoryEntity;
 import pl.sdacademy.pewex.product.model.Category;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CategoryMapperTest {
 
+    private CategoryMapper sut = new CategoryMapper();
+    // positive path
     @Test
     void shouldMapEntityToCategory(){
         CategoryEntity entity = CategoryEntity.builder()
@@ -21,13 +25,18 @@ class CategoryMapperTest {
                 .parentId(10L)
                 .build();
 
-        CategoryMapper mapper = new CategoryMapper();
+        Optional<Category> result = sut.mapEntityToCategory(entity);
 
-        Category result = mapper.mapEntityToCategory(entity).get();
-
-        assertEquals(category, result);
-
-        ;
+        assertThat(result)
+            .isNotEmpty()
+            .contains(category);
     }
 
+    @Test
+    void shouldReturnEmptyOptionalIfNullEntity() {
+
+        Optional<Category> result = sut.mapEntityToCategory(null);
+
+        assertThat(result).isEmpty();
+    }
 }
