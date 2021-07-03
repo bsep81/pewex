@@ -15,7 +15,7 @@ class PewexAppTest {
     private DataSource dataSource;
 
     @Test
-    void shoulStartContext() {
+    void shouldStartContext() {
         assertThat(dataSource).isNotNull();
     }
 }
