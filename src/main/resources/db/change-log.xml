@@ -22,7 +22,7 @@
             <column name="created_by" type="VARCHAR(150)">
                 <constraints nullable="false" unique="false"/>
             </column>
-            <column name="creted_date" type="datetime">
+            <column name="created_date" type="datetime">
                 <constraints nullable="false" unique="false"/>
             </column>
             <column name="modified_by" type="VARCHAR(150)">
@@ -30,6 +30,29 @@
             </column>
             <column name="modified_date" type="datetime">
                 <constraints nullable="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="category" author="Borys">
+        <createTable tableName="category">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="parent_id" type="BIGINT">
+                <constraints nullable="true" unique="false" />
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="productType" author="Borys">
+        <createTable tableName="product_type">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true" />
             </column>
         </createTable>
     </changeSet>
