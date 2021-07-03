@@ -22,7 +22,7 @@
             <column name="created_by" type="VARCHAR(150)">
                 <constraints nullable="false" unique="false"/>
             </column>
-            <column name="creted_date" type="datetime">
+            <column name="created_date" type="datetime">
                 <constraints nullable="false" unique="false"/>
             </column>
             <column name="modified_by" type="VARCHAR(150)">
@@ -38,7 +38,7 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" />
             </column>
-            <column name="parentId" type="BIGINT">
+            <column name="parent_id" type="BIGINT">
                 <constraints nullable="true" unique="false" />
             </column>
             <column name="name" type="VARCHAR(100)">
@@ -47,7 +47,7 @@
         </createTable>
     </changeSet>
     <changeSet id="productType" author="Borys">
-        <createTable tableName="productType">
+        <createTable tableName="product_type">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" />
             </column>
