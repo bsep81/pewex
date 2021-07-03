@@ -2,3 +2,6 @@
 spring:
   liquibase:
     change-log: classpath:db/change-log.xml
+  jpa:
+    hibernate:
+      ddl-auto: validate
