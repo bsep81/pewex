@@ -17,7 +17,7 @@ public class ProductDetail {
     private String title;
     private BigDecimal price;
     private String description;
-    private Double rating;
+    private BigDecimal rating;
 
 
 
