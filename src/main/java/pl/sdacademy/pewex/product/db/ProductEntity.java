@@ -25,9 +25,10 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    private String author;
     private BigDecimal price;
     private String description;
-    private double rating;
+    private BigDecimal rating;
 
 
 }
