@@ -1,5 +1,6 @@
 package pl.sdacademy.pewex.product.model;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,13 +12,14 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Product {
-
+public class ProductDetail {
     private Long id;
     private String title;
-    private String author;
     private BigDecimal price;
     private String description;
     private BigDecimal rating;
+
+
+
 
 }
