@@ -19,7 +19,6 @@ public class ProductMapper {
         ProductDetail productDetail = ProductDetail.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
-                .author(entity.getAuthor())
                 .price(entity.getPrice())
                 .description(entity.getDescription())
                 .rating(entity.getRating())
@@ -32,7 +31,6 @@ public class ProductMapper {
 
         return ProductEntity.builder()
                 .title(productDetail.getTitle())
-                .author(productDetail.getAuthor())
                 .price(productDetail.getPrice())
                 .description(productDetail.getDescription())
                 .rating(productDetail.getRating())
