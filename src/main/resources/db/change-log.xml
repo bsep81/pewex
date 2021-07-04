@@ -118,5 +118,6 @@
                 <constraints nullable="true" unique="false"/>
             </column>
         </createTable>
+
     </changeSet>
 </databaseChangeLog>
