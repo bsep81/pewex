@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 public class ProductDetail {
     private Long id;
     private String title;
+    private String author;
     private BigDecimal price;
     private String description;
     private BigDecimal rating;
