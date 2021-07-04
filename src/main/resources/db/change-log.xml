@@ -77,6 +77,7 @@
         </createTable>
     </changeSet>
 
+
     <changeSet id="add-itemEntity" author="Ania">
         <createTable tableName="item">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -95,6 +96,8 @@
                 <constraints nullable="false" unique="false" />
             </column>
         </createTable>
+    </changeSet>
+    <changeSet>
 
         <createTable tableName="product">
             <column name="id" type="BIGINT" autoIncrement="true">
@@ -113,6 +116,7 @@
                 <constraints nullable="true" unique="false"/>
             </column>
         </createTable>
+
 
     </changeSet>
 </databaseChangeLog>
