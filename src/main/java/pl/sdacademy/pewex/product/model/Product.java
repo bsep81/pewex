@@ -15,10 +15,8 @@ public class Product {
 
     private Long id;
     private String title;
-    private String thumbnailUrl;
-    private Category category;
     private BigDecimal price;
-    private ProductType productType;
-    private boolean avilability;
+    private String description;
+    private double rating;
 
 }
