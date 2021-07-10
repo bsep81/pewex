@@ -45,4 +45,29 @@ public class ProductMapperTest {
 
         assertThat(result).isEmpty();
     }
+
+    @Test
+    void shouldProductDetailToEntity(){
+
+        ProductEntity entity = ProductEntity.builder()
+                .title("Test title")
+                .price(new BigDecimal(99.99))
+                .description("Test description")
+                .rating(new BigDecimal(4.5))
+                .build();
+
+        ProductDetail productDetail = ProductDetail.builder()
+                .id(1L)
+                .title("Test title")
+                .price(new BigDecimal(99.99))
+                .description("Test description")
+                .rating(new BigDecimal(4.5))
+                .build();
+
+        ProductEntity result = sut.mapProductDetailToEntity(productDetail);
+
+        assertThat(result)
+                .isEqualTo(entity);
+
+    }
 }
