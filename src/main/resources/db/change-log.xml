@@ -118,6 +118,43 @@
                 <constraints nullable="true" unique="false"/>
             </column>
         </createTable>
+    </changeSet>
 
+    <changeSet id="insert-product" author="Borys"  >
+        <insert  catalogName="pewex"
+                 dbms="!h2, mysql"
+                 schemaName="pewex"
+                 tableName="product">
+            <column  name="id"  value="1"/>
+            <column  name="title"  value="Mistrz i Małgorzata"/>
+            <column  name="author"  value="Michaił Bułhakow"/>
+            <column  name="price"  value="49.99"/>
+            <column  name="description"  value="  "/>
+            <column  name="rating"  value="4.78"/>
+        </insert>
+
+        <insert  catalogName="pewex"
+                 dbms="!h2, mysql"
+                 schemaName="pewex"
+                 tableName="product">
+            <column  name="id"  value="2"/>
+            <column  name="title"  value="Przygody dobrego wojaka Szwejka"/>
+            <column  name="author"  value="Jaroslav Hasek"/>
+            <column  name="price"  value="59.99"/>
+            <column  name="description"  value="  "/>
+            <column  name="rating"  value="4.56"/>
+        </insert>
+
+        <insert  catalogName="pewex"
+                 dbms="!h2, mysql"
+                 schemaName="pewex"
+                 tableName="product">
+            <column  name="id"  value="3"/>
+            <column  name="title"  value="Paragraf 22"/>
+            <column  name="author"  value="Joseph Heller"/>
+            <column  name="price"  value="44.99"/>
+            <column  name="description"  value="  "/>
+            <column  name="rating"  value="4.44"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>
