@@ -1,4 +1,4 @@
-package pl.sdacademy.pewex.order.model;
+package pl.sdacademy.pewex.order.db;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
