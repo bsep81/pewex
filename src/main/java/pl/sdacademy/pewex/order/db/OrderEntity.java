@@ -1,8 +1,9 @@
-package pl.sdacademy.pewex.order.model;
+package pl.sdacademy.pewex.order.db;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sdacademy.pewex.order.model.Status;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
