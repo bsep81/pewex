@@ -3,7 +3,7 @@ package pl.sdacademy.pewex.product.service;
 import org.springframework.stereotype.Component;
 import pl.sdacademy.pewex.product.db.ProductEntity;
 import pl.sdacademy.pewex.product.mappers.ProductListDTOMapper;
-import pl.sdacademy.pewex.product.mappers.ProductMapper;
+import pl.sdacademy.pewex.product.mappers.ProductDetailsMapper;
 import pl.sdacademy.pewex.product.model.ProductDetail;
 import pl.sdacademy.pewex.product.model.ProductListDTO;
 import pl.sdacademy.pewex.product.repository.ProductRepository;
@@ -17,13 +17,13 @@ public class ProductService implements ProductServiceInterface{
 
     private final ProductRepository productRepository;
     private final ProductListDTOMapper productListDTOMapper;
-    private final ProductMapper productMapper;
+    private final ProductDetailsMapper productDetailsMapper;
 
-    public ProductService(ProductRepository productRepository, ProductListDTOMapper productListDTOMapper, ProductMapper productMapper) {
+    public ProductService(ProductRepository productRepository, ProductListDTOMapper productListDTOMapper, ProductDetailsMapper productDetailsMapper) {
         this.productRepository = productRepository;
         this.productListDTOMapper = productListDTOMapper;
 
-        this.productMapper = productMapper;
+        this.productDetailsMapper = productDetailsMapper;
     }
 
 
@@ -41,7 +41,7 @@ public class ProductService implements ProductServiceInterface{
         if(productEntityOptional.isEmpty()){
             return new ProductDetail();
         }
-        return productMapper.mapEntityToProductDetail(productEntityOptional.get()).get();
+        return productDetailsMapper.mapEntityToProductDetail(productEntityOptional.get()).get();
     }
 
 

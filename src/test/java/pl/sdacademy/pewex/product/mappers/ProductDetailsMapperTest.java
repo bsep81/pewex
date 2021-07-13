@@ -9,26 +9,26 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ProductMapperTest {
+public class ProductDetailsMapperTest {
 
-    private ProductMapper sut = new ProductMapper();
+    private ProductDetailsMapper sut = new ProductDetailsMapper();
 
     @Test
     void shouldMapEntityToProductDetail(){
         ProductEntity entity = ProductEntity.builder()
                 .id(1L)
                 .title("Test title")
-                .price(new BigDecimal(99.99))
+                .price(new BigDecimal("99.99"))
                 .description("Test description")
-                .rating(new BigDecimal(4.5))
+                .rating(new BigDecimal("4.5"))
                 .build();
 
         ProductDetail productDetail = ProductDetail.builder()
                 .id(1L)
                 .title("Test title")
-                .price(new BigDecimal(99.99))
+                .price(new BigDecimal("99.99"))
                 .description("Test description")
-                .rating(new BigDecimal(4.5))
+                .rating(new BigDecimal("4.5"))
                 .build();
 
         Optional<ProductDetail> result = sut.mapEntityToProductDetail(entity);
@@ -51,17 +51,17 @@ public class ProductMapperTest {
 
         ProductEntity entity = ProductEntity.builder()
                 .title("Test title")
-                .price(new BigDecimal(99.99))
+                .price(new BigDecimal("99.99"))
                 .description("Test description")
-                .rating(new BigDecimal(4.5))
+                .rating(new BigDecimal("4.5"))
                 .build();
 
         ProductDetail productDetail = ProductDetail.builder()
                 .id(1L)
                 .title("Test title")
-                .price(new BigDecimal(99.99))
+                .price(new BigDecimal("99.99"))
                 .description("Test description")
-                .rating(new BigDecimal(4.5))
+                .rating(new BigDecimal("4.5"))
                 .build();
 
         ProductEntity result = sut.mapProductDetailToEntity(productDetail);
