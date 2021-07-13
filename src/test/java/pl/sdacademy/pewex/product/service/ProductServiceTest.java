@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sdacademy.pewex.product.db.ProductEntity;
 import pl.sdacademy.pewex.product.mappers.ProductListDTOMapper;
-import pl.sdacademy.pewex.product.mappers.ProductMapper;
+import pl.sdacademy.pewex.product.mappers.ProductDetailsMapper;
 import pl.sdacademy.pewex.product.model.ProductListDTO;
 import pl.sdacademy.pewex.product.repository.ProductRepository;
 
@@ -29,7 +29,7 @@ class ProductServiceTest {
     @Mock
     private ProductListDTOMapper productListDTOMapper;
     @Mock
-    private ProductMapper productMapper;
+    private ProductDetailsMapper productDetailsMapper;
 
     @InjectMocks
     private ProductService productService;
