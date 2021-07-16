@@ -53,5 +53,11 @@ public class ProductService implements ProductServiceInterface{
         return productMapper.mapEntityToProduct(created).get();
     }
 
+    @Override
+    public void deleteProduct(Long id) {
+        Optional<ProductEntity> productEntityOptional = productRepository.findById(id);
+        productEntityOptional.ifPresent(productRepository::delete);
+    }
+
 
 }
