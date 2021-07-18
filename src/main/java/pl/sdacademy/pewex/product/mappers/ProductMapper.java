@@ -31,6 +31,7 @@ public class ProductMapper {
     public ProductEntity mapProductToEntity(Product product) {
 
         return ProductEntity.builder()
+                .id(product.getId())
                 .title(product.getTitle())
                 .author(product.getAuthor())
                 .price(product.getPrice())

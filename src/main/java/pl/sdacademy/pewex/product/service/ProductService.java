@@ -59,5 +59,11 @@ public class ProductService implements ProductServiceInterface{
         productEntityOptional.ifPresent(productRepository::delete);
     }
 
+    @Override
+    public Product updateProduct(Product product) {
+
+        return addProduct(product);
+    }
+
 
 }
