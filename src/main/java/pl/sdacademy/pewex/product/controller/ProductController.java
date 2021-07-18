@@ -16,7 +16,7 @@ import pl.sdacademy.pewex.product.model.ProductListDTO;
 import pl.sdacademy.pewex.product.service.ProductService;
 
 import java.util.List;
-import java.util.Properties;
+
 
 @RestController
 @RequestMapping("/api/product")
