@@ -1,12 +1,10 @@
 package pl.sdacademy.pewex.product.service;
 
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.sdacademy.pewex.product.db.ProductEntity;
 import pl.sdacademy.pewex.product.exceptions.ProductException;
-import pl.sdacademy.pewex.product.mappers.ProductListDTOMapper;
-import pl.sdacademy.pewex.product.mappers.ProductDetailsMapper;
-import pl.sdacademy.pewex.product.mappers.ProductMapper;
+import pl.sdacademy.pewex.product.mappers.ProductMappersFacade;
 import pl.sdacademy.pewex.product.model.Product;
 import pl.sdacademy.pewex.product.model.ProductDetail;
 import pl.sdacademy.pewex.product.model.ProductListDTO;
@@ -17,20 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class ProductService implements ProductServiceInterface{
 
     private final ProductRepository productRepository;
-    private final ProductListDTOMapper productListDTOMapper;
-    private final ProductDetailsMapper productDetailsMapper;
-    private final ProductMapper productMapper;
+    private final ProductMappersFacade productMappersFacade;
     private final ProductValidator productValidator;
 
-    public ProductService(ProductRepository productRepository, ProductListDTOMapper productListDTOMapper, ProductDetailsMapper productDetailsMapper, ProductMapper productMapper, ProductValidator productValidator) {
+    public ProductService(ProductRepository productRepository, ProductMappersFacade productMappersFacade, ProductValidator productValidator) {
         this.productRepository = productRepository;
-        this.productListDTOMapper = productListDTOMapper;
-        this.productDetailsMapper = productDetailsMapper;
-        this.productMapper = productMapper;
+        this.productMappersFacade = productMappersFacade;
         this.productValidator = productValidator;
     }
 
@@ -38,7 +32,7 @@ public class ProductService implements ProductServiceInterface{
     @Override
     public List<ProductListDTO> getProductList() {
         List<ProductListDTO> products = new ArrayList<>();
-        productRepository.findAll().forEach(entity -> products.add(productListDTOMapper.mapEntityToProductListDTO(entity).get()));
+        productRepository.findAll().forEach(entity -> products.add(productMappersFacade.mapEntityToProductListDTO(entity).get()));
 
         return products;
     }
@@ -49,7 +43,7 @@ public class ProductService implements ProductServiceInterface{
         if(productEntityOptional.isEmpty()){
             return new ProductDetail();
         }
-        return productDetailsMapper.mapEntityToProductDetail(productEntityOptional.get()).get();
+        return productMappersFacade.mapEntityToProductDetail(productEntityOptional.get()).get();
     }
 
     @Override
@@ -60,8 +54,8 @@ public class ProductService implements ProductServiceInterface{
             throw new ProductException(Strings.join(errors, ','));
         }
 
-        ProductEntity created = productRepository.save(productMapper.mapProductToEntity(product));
-        return productMapper.mapEntityToProduct(created).get();
+        ProductEntity created = productRepository.save(productMappersFacade.mapProductToEntity(product));
+        return productMappersFacade.mapEntityToProduct(created).get();
     }
 
     @Override
