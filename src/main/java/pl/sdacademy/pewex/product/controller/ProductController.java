@@ -1,5 +1,7 @@
 package pl.sdacademy.pewex.product.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,7 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private static final Logger LOG = LoggerFactory.getLogger(ProductController.class);
 
     public ProductController(ProductService productService) {
         this.productService = productService;
@@ -30,29 +33,34 @@ public class ProductController {
 
     @GetMapping("/list")
     public List<ProductListDTO> getList(){
+        LOG.info("Getting product list");
         return productService.getProductList();
     }
 
     @GetMapping("/{id}")
     public ProductDetail getProductDetail(@PathVariable(name = "id") Long id){
+        LOG.info("Getting product details for id={}", id);
         return productService.getProductDetail(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Product addProduct(@RequestBody Product product){
-        return productService.addProduct(product);
+        LOG.info("Adding product {} to database", product.getTitle());
+        return productService.saveProduct(product);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable(name = "id") Long id){
+        LOG.info("Attempting to delete product with id={} from database", id);
         productService.deleteProduct(id);
     }
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PutMapping
     public Product updateProduct(@RequestBody Product product){
+        LOG.info("Attempting to update product with id={}", product.getId());
         return productService.updateProduct(product);
     }
 
