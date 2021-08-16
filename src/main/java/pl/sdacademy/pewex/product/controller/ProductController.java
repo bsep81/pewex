@@ -3,6 +3,7 @@ package pl.sdacademy.pewex.product.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,6 +46,7 @@ public class ProductController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public Product addProduct(@RequestBody Product product){
         LOG.info("Adding product {} to database", product.getTitle());
         return productService.saveProduct(product);
@@ -52,6 +54,7 @@ public class ProductController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public void deleteProduct(@PathVariable(name = "id") Long id){
         LOG.info("Attempting to delete product with id={} from database", id);
         productService.deleteProduct(id);
@@ -59,6 +62,7 @@ public class ProductController {
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PutMapping
+    @Secured("ROLE_ADMIN")
     public Product updateProduct(@RequestBody Product product){
         LOG.info("Attempting to update product with id={}", product.getId());
         return productService.updateProduct(product);
