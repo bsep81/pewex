@@ -2,69 +2,78 @@ package pl.sdacademy.pewex.product.mappers;
 
 import org.junit.jupiter.api.Test;
 import pl.sdacademy.pewex.product.db.ProductEntity;
-import pl.sdacademy.pewex.product.model.ProductListDTO;
+import pl.sdacademy.pewex.product.model.Product;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ProductListDTOMapperTest {
+class ProductMapperTest {
 
-    private final ProductListDTOMapper sut = new ProductListDTOMapper();
+    private final ProductMapper sut = new ProductMapper();
 
     @Test
-    void shouldMapEntityToProductListDTO(){
+    void shouldMapEntityToProduct() {
+
         ProductEntity entity = ProductEntity.builder()
                 .id(1L)
                 .title("Test title")
+                .author("Test Author")
                 .price(new BigDecimal("99.99"))
+                .description("Test description")
                 .rating(new BigDecimal("4.5"))
                 .build();
 
-        ProductListDTO productListDTO = ProductListDTO.builder()
+        Product product = Product.builder()
                 .id(1L)
                 .title("Test title")
+                .author("Test Author")
                 .price(new BigDecimal("99.99"))
+                .description("Test description")
                 .rating(new BigDecimal("4.5"))
                 .build();
 
-        Optional<ProductListDTO> result = sut.mapEntityToProductListDTO(entity);
+        Optional<Product> result = sut.mapEntityToProduct(entity);
 
         assertThat(result)
                 .isNotEmpty()
-                .contains(productListDTO);
-
+                .contains(product);
     }
 
     @Test
     void shouldReturnEmptyOptionalIfNullEntity(){
 
-        Optional<ProductListDTO> result = sut.mapEntityToProductListDTO(null);
+        Optional<Product> result = sut.mapEntityToProduct(null);
 
         assertThat(result).isEmpty();
     }
 
+
     @Test
-    void shouldMapProductListDTOToEntity(){
+    void shouldMapProductToEntity() {
 
         ProductEntity entity = ProductEntity.builder()
+                .id(1L)
                 .title("Test title")
+                .author("Test Author")
                 .price(new BigDecimal("99.99"))
+                .description("Test description")
                 .rating(new BigDecimal("4.5"))
                 .build();
 
-        ProductListDTO productListDTO = ProductListDTO.builder()
+        Product product = Product.builder()
+                .id(1L)
                 .title("Test title")
+                .author("Test Author")
                 .price(new BigDecimal("99.99"))
+                .description("Test description")
                 .rating(new BigDecimal("4.5"))
                 .build();
 
-        ProductEntity result = sut.mapProductListDTOToEntity(productListDTO);
+        ProductEntity result = sut.mapProductToEntity(product);
 
         assertThat(result)
                 .isEqualTo(entity);
-
     }
-
 }
