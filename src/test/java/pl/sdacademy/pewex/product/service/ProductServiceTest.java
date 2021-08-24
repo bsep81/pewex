@@ -6,9 +6,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.sdacademy.pewex.product.db.ProductEntity;
+import pl.sdacademy.pewex.product.exceptions.ProductException;
 import pl.sdacademy.pewex.product.mappers.ProductMappersFacade;
+import pl.sdacademy.pewex.product.model.Product;
 import pl.sdacademy.pewex.product.model.ProductListDTO;
 import pl.sdacademy.pewex.product.repository.ProductRepository;
+import pl.sdacademy.pewex.product.validators.ProductValidator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.when;
 
 
@@ -27,6 +31,8 @@ class ProductServiceTest {
     private ProductRepository productRepository;
     @Mock
     private ProductMappersFacade productMappersFacade;
+    @Mock
+    private ProductValidator productValidator;
 
     @InjectMocks
     private ProductService productService;
@@ -70,5 +76,24 @@ class ProductServiceTest {
         assertThat(result).isEmpty();
 
 
+    }
+
+    @Test
+    void ShouldThrowProductExceptionWhenProductNotValid(){
+
+        Product product = Product.builder()
+                .id(1L)
+                .author("Test Author")
+                .price(new BigDecimal("99.99"))
+                .description("Test description")
+                .rating(new BigDecimal("4.5"))
+                .build();
+
+        when(productValidator.isValid(product)).thenReturn(List.of("Field 'title' can not be empty"));
+
+        assertThatExceptionOfType(ProductException.class)
+                .isThrownBy(() -> productService.saveProduct(product))
+                .withMessage("Field 'title' can not be empty")
+                .withNoCause();
     }
 }

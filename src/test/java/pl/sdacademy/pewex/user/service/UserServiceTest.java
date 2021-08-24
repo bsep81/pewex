@@ -7,16 +7,18 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.sdacademy.pewex.user.db.UserEntity;
+import pl.sdacademy.pewex.user.exceptions.UserException;
 import pl.sdacademy.pewex.user.mappers.UserMapper;
 import pl.sdacademy.pewex.user.model.User;
 import pl.sdacademy.pewex.user.repository.UserRepository;
 import pl.sdacademy.pewex.user.validators.UserValidator;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -59,10 +61,21 @@ class UserServiceTest {
         User saved = userService.addUser(user);
 
         assertThat(saved).isEqualTo(user);
-
     }
 
+    @Test
+    void shouldThrowUserExceptionWhenUserNotValid(){
 
+        User user = User.builder()
+                .password("Test password")
+                .role("Test role")
+                .build();
 
+        when(userValidator.isValid(user)).thenReturn(List.of("User name required"));
 
+        assertThatExceptionOfType(UserException.class)
+                .isThrownBy(() -> userService.addUser(user))
+                .withMessage("User name required")
+                .withNoCause();
+    }
 }
